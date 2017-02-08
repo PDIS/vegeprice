@@ -71,7 +71,7 @@ def saveDataByDate():
                 print foodType
             # 真正的資料內容
             else:
-                csvFile.write(",".join(row).encode('utf8')+"\n")
+                csvFile.write(",".join([price.replace(",","") for price in row]).encode('utf8')+"\n")
 
 
 MARKETS = []
