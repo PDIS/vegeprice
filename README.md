@@ -16,5 +16,5 @@
  -   `pip install -r requirements.txt`
  -   `python Crawler.py 2017-01-01`
  -   批次搜集
-    - 參考 2014-2016.sh 建立 sh or bat 檔
-    - `sh 2014-2016.sh` ( Linux & Mac )
+    - 參考 2013-2016.sh 建立 sh or bat 檔
+    - `sh 2013-2016.sh` ( for Mac )
