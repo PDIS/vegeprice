@@ -71,7 +71,7 @@ def saveDataByDate():
 
 FOODTYPE = ""
 DATE = sys.argv[1]
-FOLDER = "priceArchive"
+FOLDER = "."
 DATATABLE = getDataTable()
 MARKETS = DATATABLE[0][1:]
 
