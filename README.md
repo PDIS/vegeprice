@@ -7,4 +7,5 @@
 ### 資料蒐集
  -  資料來源：
     -  [高雄市公有零售市場交易價格查詢](http://edbkcg.kcg.gov.tw/prices)
+    -  [交通部中央氣象局每日雨量](http://www.cwb.gov.tw/V7/climate/dailyPrecipitation/dP.htm)
  -  蒐集範圍：2013-01-01 ~ 2016-12-31
