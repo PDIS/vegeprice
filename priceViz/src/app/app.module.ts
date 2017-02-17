@@ -1,3 +1,4 @@
+import { ChartDataService } from './price-trend/chart/chart-data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,20 +8,30 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PriceTrendComponent } from './price-trend/price-trend.component';
+import { DataSelectComponent } from './price-trend/data-select/data-select.component';
+import { CwbComponent } from './price-trend/data-select/cwb/cwb.component';
+import { EdbkcgComponent } from './price-trend/data-select/edbkcg/edbkcg.component';
+import { ChartComponent } from './price-trend/chart/chart.component';
+import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    PriceTrendComponent
+    PriceTrendComponent,
+    DataSelectComponent,
+    CwbComponent,
+    EdbkcgComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    Ng2GoogleChartsModule
   ],
-  providers: [],
+  providers: [ChartDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

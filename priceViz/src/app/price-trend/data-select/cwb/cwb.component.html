@@ -1,0 +1,12 @@
+<h4>
+    中央氣象局雨量資訊
+    <button class="btn btn-default btn-xs" (click)="addItem()">＋</button>
+</h4>
+<div class="button-group" *ngFor="let item of selectedItems; let i = index">
+    <select class="select-item" name="item_{{i}}" [(ngModel)]="selectedItems[i]" (ngModelChange)="onSelectChange($event,i)">
+      <option *ngFor="let station of stations">{{station['name']}}</option>
+    </select>
+    <button class="btn btn-xs btn-danger" (click)="deleteItem(i)">－</button>
+</div>
+<p *ngIf="selectedItems.length===0">尚未選擇資料...</p>
+<hr>

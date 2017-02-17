@@ -1,6 +1,7 @@
-<div class="container">
-    <h1>價格趨勢</h1>
-    <div>
-
-    </div>
+<div class="col-xs-3 sidebar">
+    <app-data-select></app-data-select>
+    <button type="button" class="btn btn-success" (click)="redraw()">更新圖表</button>
+</div>
+<div class="col-xs-9 col-xs-offset-3">
+    <app-chart #chart></app-chart>
 </div>
