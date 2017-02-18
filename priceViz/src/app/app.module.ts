@@ -8,9 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { PriceTrendComponent } from './price-trend/price-trend.component';
-import { DataSelectComponent } from './price-trend/data-select/data-select.component';
-import { CwbComponent } from './price-trend/data-select/cwb/cwb.component';
-import { EdbkcgComponent } from './price-trend/data-select/edbkcg/edbkcg.component';
+import { CwbComponent } from './price-trend/data-source/cwb/cwb.component';
+import { EdbkcgComponent } from './price-trend/data-source/edbkcg/edbkcg.component';
 import { ChartComponent } from './price-trend/chart/chart.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
@@ -19,7 +18,6 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     AppComponent,
     HeaderComponent,
     PriceTrendComponent,
-    DataSelectComponent,
     CwbComponent,
     EdbkcgComponent,
     ChartComponent

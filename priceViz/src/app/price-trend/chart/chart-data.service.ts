@@ -6,14 +6,19 @@ export class ChartDataService {
 
   constructor() { }
 
-  chartDataSet:Array<Chart> = []
+  chartDataSet: Object = {}
 
-  getChartDataSet(){
-    return this.chartDataSet;
+  getChartDataSet() {
+    var combineDataSet: Array<Chart> = []
+    Object.keys(this.chartDataSet).forEach(key => {
+      combineDataSet = combineDataSet.concat(this.chartDataSet[key])
+    })
+
+    return combineDataSet;
   }
 
-  addChartDataSet(chart:Chart){
-    this.chartDataSet.push(chart);
+  addChartDataSet(dataSource: string, chartData: Array<Chart>) {
+    this.chartDataSet[dataSource] = chartData;
   }
 
 }

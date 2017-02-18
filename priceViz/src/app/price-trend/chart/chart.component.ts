@@ -1,3 +1,6 @@
+import {SimpleChange} from '@angular/core/src/change_detection/change_detection_util';
+import {GoogleChartComponent} from 'ng2-google-charts/google-chart/google-chart.component';
+import { ViewChild } from '@angular/core/src/metadata/di';
 import { ChartDataService } from './chart-data.service';
 import { Component, OnInit } from '@angular/core';
 import {Chart} from './chart'
@@ -17,23 +20,32 @@ export class ChartComponent implements OnInit {
   header = []
   dataTable = []
 
-  pieChartOptions = {
+  width = window.innerWidth * 0.7
+  height = window.innerHeight * 0.6
+
+  pieChartOptions:Object = {
     chartType: 'LineChart',
     dataTable: this.dataTable,
-    options: { 'title': 'Tasks' },
+    options: {
+      'title': 'Tasks',
+      'width': this.width,
+      'height': this.height,
+      'chartArea': {
+        width:this.width * 0.8,
+        left: this.width * 0.1,
+        top:this.height * 0.1,
+        height:this.height * 0.8
+      }
+    },
   };
 
   ngOnInit() {
-    this.show = false
     this.chartData = [];
     this.axis = []
     this.header = []
     this.dataTable = []
-  }
-
-  ngOnChanges() { // <------
-    this.draw();
-    console.log("1213")
+    this.width = window.innerWidth * 0.7
+    this.height = window.innerHeight * 0.6
   }
 
   draw() {
@@ -44,11 +56,13 @@ export class ChartComponent implements OnInit {
     this.axisToTime()
     this.dataTable[0] = ['Task'].concat(this.axis);
     this.dataTable = this.dataTable[0].map((x,i) => this.dataTable.map(x => x[i]));
-    this.pieChartOptions.dataTable = this.dataTable
+    this.pieChartOptions['dataTable'] = this.dataTable
+    // this.pieChartOptions['options']
+    this.pieChartOptions = Object.create(this.pieChartOptions);
     this.show = true
   }
 
-  initDataTable(){
+  private initDataTable(){
     this.chartData.map((chart,idx)=>{
       var row = [];
       this.axis.forEach((key)=>{
@@ -58,12 +72,12 @@ export class ChartComponent implements OnInit {
     })
   }
 
-  initAxis(){
+  private initAxis(){
     this.axis = Object.keys(this.chartData[0].data).filter(key=>key!="")
     this.axis = this.axis.sort((a,b)=>{return (a>b)?1:-1});
   }
 
-  axisToTime(){
+  private axisToTime(){
     this.axis = this.axis.map(key=>new Date(key))
   }
 
