@@ -3,6 +3,7 @@
 import httplib
 import urllib
 import os.path
+import json
 import sys
 from bs4 import BeautifulSoup
 
@@ -41,6 +42,7 @@ def saveDataByFood():
 
 def saveDataByFoodRow(dataRow):
     food = dataRow[0]
+    FOODS.append(food)
     filename = FOLDER + "/byFood/" + food + ".csv"
     if not os.path.exists(filename):
         with open(filename, "a") as csvFile:
@@ -49,7 +51,7 @@ def saveDataByFoodRow(dataRow):
     dataArray = []
     with open(filename, "a") as csvFile:
         for idx, price in enumerate(dataRow[1:]):
-            dataArray.append(("%s,%s,%s" % (DATE, MARKETS[idx], price)).encode('utf8'))
+            dataArray.append(("%s,%s,%s" % (DATE, MARKETS[idx], price.replace(",", ""))).encode('utf8'))
         csvFile.write("\n".join(dataArray)+"\n")
 
 def saveDataByDate():
@@ -67,14 +69,31 @@ def saveDataByDate():
             # 真正的資料內容
             else:
                 csvFile.write(",".join([price.replace(",", "") for price in row]).encode('utf8')+"\n")
+                FOODS.append(row[0])
 
+def distinctFoods():
+    return list(set(FOODS))
+
+def saveFoods():
+    filename = FOLDER + "/foods.json"
+    with open(filename, "w") as jsonFile:
+        jsonFile.write(json.dumps(FOODS, indent=2, ensure_ascii=False).encode('utf8'))
+
+def saveMarkkets():
+    filename = FOLDER + "/markets.json"
+    with open(filename, "w") as jsonFile:
+        jsonFile.write(json.dumps(MARKETS, indent=2, ensure_ascii=False).encode('utf8'))
 
 FOODTYPE = ""
 DATE = sys.argv[1]
 FOLDER = "."
 DATATABLE = getDataTable()
 MARKETS = DATATABLE[0][1:]
+FOODS = []
 
 checkFolder()
-saveDataByFood()
-# saveDataByDate()
+# saveDataByFood()
+saveDataByDate()
+saveMarkkets()
+FOODS = distinctFoods()
+saveFoods()
