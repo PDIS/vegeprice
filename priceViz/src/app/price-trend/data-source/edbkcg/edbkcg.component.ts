@@ -30,12 +30,14 @@ export class EdbkcgComponent implements OnInit {
     this.http.get(EDBKCGConfig.MarketURL)
       .map(data => data.json())
       .subscribe(data => {
-        this.markets = ["平均價格"].concat(data);
+        // this.markets = ["平均價格"].concat(data);
+        this.markets = data;
       })
   }
 
   private addItem() {
-    this.selectedSets.push(new EDBKCGData("","平均價格"));
+    // this.selectedSets.push(new EDBKCGData("","平均價格"));
+    this.selectedSets.push(new EDBKCGData("",""));
   }
 
   private deleteItem(index) {
@@ -68,6 +70,7 @@ export class EdbkcgComponent implements OnInit {
     let chartData = {};
     csv.split("\n").splice(1).forEach((row)=>{
         let [date,market,price] = row.split(",",3)
+        chartData[date] = price
     });
     
     return chartData;
