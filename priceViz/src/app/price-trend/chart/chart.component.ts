@@ -19,6 +19,7 @@ export class ChartComponent implements OnInit {
   axis = []
   header = []
   dataTable = []
+  series = {}
 
   width = window.innerWidth * 0.7
   height = window.innerHeight * 0.6
@@ -31,19 +32,20 @@ export class ChartComponent implements OnInit {
       'width': this.width,
       'height': this.height,
       'chartArea': {
-        width: this.width * 0.9,
+        width: this.width * 0.8,
         left: this.width * 0.1,
         top: this.height * 0.1,
         height: this.height * 0.8
       },
       'legend': { position: 'bottom' },
       'interpolateNulls': true,
-      'explorer': { 
+      'explorer': {
         actions: ['dragToZoom', 'rightClickToReset'],
         axis: 'horizontal'
       },
       // 'curveType': 'function',
-      focusTarget: 'category'
+      focusTarget: 'category',
+      series: this.series
     },
   };
 
@@ -65,6 +67,7 @@ export class ChartComponent implements OnInit {
     this.dataTable[0] = ['Task'].concat(this.axis);
     this.dataTable = this.dataTable[0].map((x, i) => this.dataTable.map(x => x[i]));
     this.pieChartOptions['dataTable'] = this.dataTable
+    this.pieChartOptions['options']['series'] = this.series
     // this.pieChartOptions['options']
     this.pieChartOptions = Object.create(this.pieChartOptions);
     this.show = true
@@ -77,7 +80,9 @@ export class ChartComponent implements OnInit {
         row.push(Number(chart.data[key]));
       })
       this.dataTable[idx + 1] = [chart.label].concat(row);
+      this.series[idx] = {targetAxisIndex:chart.y_axis}
     })
+    console.log(this.series)
   }
 
   private initAxis() {

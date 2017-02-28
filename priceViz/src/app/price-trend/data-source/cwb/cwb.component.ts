@@ -44,7 +44,7 @@ export class CwbComponent implements OnInit {
     this.http.get( CWBConfig.byLocationURL + station + '.csv')
     .map(data=>{
       var chart:Chart = new Chart()
-      chart.y_axis = 0
+      chart.y_axis = 1
       chart.data = this.csvToChartData(data['_body'])
       chart.label = station;
       return chart;
