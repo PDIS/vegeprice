@@ -12,6 +12,7 @@ import { CwbComponent } from './price-trend/data-source/cwb/cwb.component';
 import { EdbkcgComponent } from './price-trend/data-source/edbkcg/edbkcg.component';
 import { ChartComponent } from './price-trend/chart/chart.component';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { AmisComponent } from './price-trend/data-source/amis/amis.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     PriceTrendComponent,
     CwbComponent,
     EdbkcgComponent,
-    ChartComponent
+    ChartComponent,
+    AmisComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,21 @@
+<h4>
+    農產品批發市場交易行情站
+    <button class="btn btn-default btn-xs" (click)="addItem()">＋</button>
+</h4>
+
+<div class="button-group" *ngFor="let item of selectedSets; let i = index">
+
+    <select class="select-item" name="food_{{i}}" [(ngModel)]="selectedSets[i]['food']" (ngModelChange)="onSelectChange(i)">
+      <option *ngFor="let food of foods" >{{food}}</option>
+    </select>
+    <select class="select-item" name="market_{{i}}" [(ngModel)]="selectedSets[i]['market']" (ngModelChange)="onSelectChange(i)">
+      <option *ngFor="let market of markets">{{market}}</option>
+    </select>
+    <select class="select-item" name="option_{{i}}" [(ngModel)]="selectedSets[i]['option']" (ngModelChange)="onSelectChange(i)">
+      <option *ngFor="let option of options" [value]="option.key">{{option.value}}</option>
+    </select>
+
+    <button class="btn btn-xs btn-danger" (click)="deleteItem(i)">－</button>
+</div>
+<p *ngIf="selectedSets.length===0">尚未選擇資料...</p>
+<hr>
