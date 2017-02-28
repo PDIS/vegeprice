@@ -38,7 +38,12 @@ export class ChartComponent implements OnInit {
       },
       'legend': { position: 'bottom' },
       'interpolateNulls': true,
-      'explorer': { actions: ['dragToZoom', 'rightClickToReset'] }
+      'explorer': { 
+        actions: ['dragToZoom', 'rightClickToReset'],
+        axis: 'horizontal'
+      },
+      // 'curveType': 'function',
+      focusTarget: 'category'
     },
   };
 
