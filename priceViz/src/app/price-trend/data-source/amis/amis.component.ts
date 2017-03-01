@@ -34,11 +34,11 @@ export class AmisComponent implements OnInit {
         this.markets = data;
       })
 
-    this.options.push({key:'highPrice',value:'上價'})
-    this.options.push({key:'midPrice',value:'中價'})
-    this.options.push({key:'lowPrice',value:'下價'})
-    this.options.push({key:'avgPrice',value:'均價'})
-    this.options.push({key:'amount',value:'銷售量'})
+    this.options.push({ key: 'highPrice', value: '上價' })
+    this.options.push({ key: 'midPrice', value: '中價' })
+    this.options.push({ key: 'lowPrice', value: '下價' })
+    this.options.push({ key: 'avgPrice', value: '均價' })
+    this.options.push({ key: 'amount', value: '銷售量' })
 
   }
 
@@ -63,7 +63,9 @@ export class AmisComponent implements OnInit {
     this.http.get(AMISConfig.byFoodURL + set.food + '.csv')
       .map(data => {
         var chart: Chart = new Chart()
-        chart.y_axis = 1
+        chart.y_axis = 0
+        if (set.option === 'amount')
+          chart.y_axis = 1
         chart.data = this.csvToChartData(data['_body'], set.market, set.option)
         chart.label = set.food + "-" + set.market + "-" + set.option;
         return chart;
